@@ -1,4 +1,5 @@
 
+
 class NavSec
 {
     private $current_post = 0;
@@ -82,7 +83,11 @@ class NavSec
      */
     function is_current( $post_id )
     {
-	return ( in_array( $post_id, $this->current_post->ancestors ) || $this->current_post->ID === $post_id );
+	if( property_exists( $this->current_post, 'ancestors' ) ){
+	    return ( in_array( $post_id, $this->current_post->ancestors ) || $this->current_post->ID === $post_id );
+	}else{
+	    return false;
+	}
     }
         
     /**
@@ -183,3 +188,7 @@ class NavSec
     }
     
 }
+
+
+
+
